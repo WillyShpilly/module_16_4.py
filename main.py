@@ -28,7 +28,10 @@ async def add_user(
                              description="Enter age",
                              example="24")],
 ) -> User:
-    user_id = str(len(users) + 1)
+    if users:
+        user_id = users[-1].id + 1
+    else:
+        user_id = 1    
     user = User(id=user_id, username=username, age=age)
     users.append(user)
     return user
